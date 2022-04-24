@@ -1,0 +1,1036 @@
+=== RUN   TestUnreliableChurn2C
+Test (2C): unreliable churn ...
+2022/04/25 05:47:18 {Node 0 with state: StateFollower} begin new election
+2022/04/25 05:47:18 {Node: 3} received {Req: &{1 0 0 0}} from {Node: 0} with Term: 0 in state: StateFollower
+2022/04/25 05:47:18 {Node: 0} receives RequestVoteResponse &{1 true} from {Node 3} in term: 1 with state: StateCandidate
+2022/04/25 05:47:18 {Node: 2} received {Req: &{1 0 0 0}} from {Node: 0} with Term: 0 in state: StateFollower
+2022/04/25 05:47:18 {Node: 4} received {Req: &{1 0 0 0}} from {Node: 0} with Term: 0 in state: StateFollower
+2022/04/25 05:47:18 {Node: 0} receives RequestVoteResponse &{1 true} from {Node 2} in term: 1 with state: StateCandidate
+2022/04/25 05:47:18 {Node: 0} receives RequestVoteResponse &{1 true} from {Node 4} in term: 1 with state: StateLeader
+2022/04/25 05:47:18 {Node: 2} receives {appendreq: &{1 0 0 0 [] 0}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:18 {Node: 3} receives {appendreq: &{1 0 0 0 [] 0}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:18 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:18 {Node 0} receives {AppendResp: &{1 true 1 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:18 {Node:0}add entrylog:{1 1 3788947475083528650} with term:1 in state:StateLeader
+2022/04/25 05:47:18 {Node: 4} receives {appendreq: &{1 0 0 0 [] 0}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:18 {Node 0} receives {AppendResp: &{1 true 1 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 2 4956110097331282267} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 1 with state: StateFollower} begin new election
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 3 8191760884279101394} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 0 0 [{1 1 3788947475083528650} {1 2 4956110097331282267} {1 3 8191760884279101394}] 0}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 3} receives {appendreq: &{1 0 0 0 [{1 1 3788947475083528650} {1 2 4956110097331282267} {1 3 8191760884279101394}] 0}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 4 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 0 0 [{1 1 3788947475083528650} {1 2 4956110097331282267} {1 3 8191760884279101394}] 0}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 4 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 4 5037200041267729788} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 5 7887244969359402961} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 6 6892829932812440587} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 0 0 [{1 1 3788947475083528650} {1 2 4956110097331282267} {1 3 8191760884279101394} {1 4 5037200041267729788} {1 5 7887244969359402961}] 3}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 3 1 [{1 4 5037200041267729788} {1 5 7887244969359402961}] 3}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 6 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 6 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 3} receives {appendreq: &{1 0 3 1 [{1 4 5037200041267729788} {1 5 7887244969359402961}] 3}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 6 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 7 2774090144996689630} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 8 1706213031304998123} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 5 1 [{1 6 6892829932812440587} {1 7 2774090144996689630}] 5}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 8 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 5 1 [{1 6 6892829932812440587} {1 7 2774090144996689630}] 5}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 8 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 3} receives {appendreq: &{1 0 5 1 [{1 6 6892829932812440587} {1 7 2774090144996689630}] 5}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 8 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 9 9026737506760419546} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 10 7626510269083178086} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 7 1 [{1 8 1706213031304998123} {1 9 9026737506760419546} {1 10 7626510269083178086}] 7}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 11 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 7 1 [{1 8 1706213031304998123} {1 9 9026737506760419546} {1 10 7626510269083178086}] 7}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 11 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 3} receives {appendreq: &{1 0 7 1 [{1 8 1706213031304998123} {1 9 9026737506760419546} {1 10 7626510269083178086}] 7}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 11 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 11 4760489533950578536} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 12 8390568587990075413} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 13 764356243653662058} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 10 1 [{1 11 4760489533950578536} {1 12 8390568587990075413}] 10}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 13 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 10 1 [{1 11 4760489533950578536} {1 12 8390568587990075413}] 10}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node: 3} receives {appendreq: &{1 0 10 1 [{1 11 4760489533950578536} {1 12 8390568587990075413}] 10}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 13 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 13 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 14 8589580053115125495} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 15 2310577351193402778} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 12 1 [{1 13 764356243653662058} {1 14 8589580053115125495} {1 15 2310577351193402778}] 12}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 16 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 12 1 [{1 13 764356243653662058} {1 14 8589580053115125495} {1 15 2310577351193402778}] 12}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 3} receives {appendreq: &{1 0 12 1 [{1 13 764356243653662058} {1 14 8589580053115125495} {1 15 2310577351193402778}] 12}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 16 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 16 3858807060403867315} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 17 257986435321510781} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 2 with state: StateCandidate
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 18 8733201691662079299} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 12 1 [{1 13 764356243653662058} {1 14 8589580053115125495} {1 15 2310577351193402778} {1 16 3858807060403867315} {1 17 257986435321510781} {1 18 8733201691662079299}] 15}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 19 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 3} receives {appendreq: &{1 0 15 1 [{1 16 3858807060403867315} {1 17 257986435321510781} {1 18 8733201691662079299}] 15}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 18 1 [] 15}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 19 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 15 1 [{1 16 3858807060403867315} {1 17 257986435321510781} {1 18 8733201691662079299}] 15}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 19 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 19 335604771107222110} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 20 6157568135074944843} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node: 3} receives {appendreq: &{1 0 15 1 [{1 16 3858807060403867315} {1 17 257986435321510781} {1 18 8733201691662079299} {1 19 335604771107222110} {1 20 6157568135074944843}] 18}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 21 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 18 1 [{1 19 335604771107222110} {1 20 6157568135074944843}] 18}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 21 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 4} receives {appendreq: &{1 0 18 1 [{1 19 335604771107222110} {1 20 6157568135074944843}] 18}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 21 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:19 {Node: 0} receives RequestVoteResponse &{0 false} from {Node 1} in term: 1 with state: StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 21 6084832370734555489} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node 0} begin new heartbeat
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 22 8203180691961848961} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node:0}add entrylog:{1 23 1468917058832790645} with term:1 in state:StateLeader
+2022/04/25 05:47:19 {Node: 2} receives {appendreq: &{1 0 20 1 [{1 21 6084832370734555489}] 20}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:19 {Node 0} receives {AppendResp: &{1 true 22 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 20 1 [{1 21 6084832370734555489}] 20}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 22 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 4} receives {appendreq: &{1 0 20 1 [{1 21 6084832370734555489}] 20}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 24 8900458227020874954} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 21 1 [{1 22 8203180691961848961} {1 23 1468917058832790645} {1 24 8900458227020874954}] 21}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 21 1 [{1 22 8203180691961848961} {1 23 1468917058832790645} {1 24 8900458227020874954}] 21}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 4} receives {appendreq: &{1 0 20 1 [{1 21 6084832370734555489} {1 22 8203180691961848961} {1 23 1468917058832790645} {1 24 8900458227020874954}] 21}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 25 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 21 1 [{1 22 8203180691961848961} {1 23 1468917058832790645} {1 24 8900458227020874954}] 21}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 25 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 4} receives {appendreq: &{1 0 24 1 [] 21}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 25 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 21 1 [{1 22 8203180691961848961} {1 23 1468917058832790645} {1 24 8900458227020874954}] 21}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 25 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 24 1 [] 24}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 25 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 24 1 [] 24}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 25 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 4} receives {appendreq: &{1 0 24 1 [] 24}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 25 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 25 5291817761746792704} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 26 4436712319420893177} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 24 1 [{1 25 5291817761746792704} {1 26 4436712319420893177}] 24}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 27 5517897833765320186} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 27 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 24 1 [{1 25 5291817761746792704} {1 26 4436712319420893177}] 24}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 27 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 28 6400617488350398726} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 29 4155250007531111274} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node: 4} receives {appendreq: &{1 0 24 1 [{1 25 5291817761746792704} {1 26 4436712319420893177} {1 27 5517897833765320186} {1 28 6400617488350398726} {1 29 4155250007531111274}] 26}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 26 1 [{1 27 5517897833765320186} {1 28 6400617488350398726} {1 29 4155250007531111274}] 26}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 30 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 26 1 [{1 27 5517897833765320186} {1 28 6400617488350398726} {1 29 4155250007531111274}] 26}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 30 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 30 5988339650969929935} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 31 2240856218505804915} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 32 1046688638307285516} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 29 1 [{1 30 5988339650969929935}] 29}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 31 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 29 1 [{1 30 5988339650969929935}] 29}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 31 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 4} receives {appendreq: &{1 0 24 1 [{1 25 5291817761746792704} {1 26 4436712319420893177} {1 27 5517897833765320186} {1 28 6400617488350398726} {1 29 4155250007531111274} {1 30 5988339650969929935}] 29}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 31 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 33 2458793158385583058} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node: 4} receives {appendreq: &{1 0 30 1 [{1 31 2240856218505804915} {1 32 1046688638307285516} {1 33 2458793158385583058}] 30}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 30 1 [{1 31 2240856218505804915} {1 32 1046688638307285516} {1 33 2458793158385583058}] 30}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 30 1 [{1 31 2240856218505804915} {1 32 1046688638307285516} {1 33 2458793158385583058}] 30}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 34 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 30 1 [{1 31 2240856218505804915} {1 32 1046688638307285516} {1 33 2458793158385583058}] 30}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 34 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 3} receives {appendreq: &{1 0 33 1 [] 30}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 34 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node: 2} receives {appendreq: &{1 0 33 1 [] 33}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{1 true 34 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 4} receives {appendreq: &{1 0 30 1 [{1 31 2240856218505804915} {1 32 1046688638307285516} {1 33 2458793158385583058}] 33}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 5 with state: StateCandidate
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 34 6121085174225136992} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 35 1341931694325708934} with term:1 in state:StateLeader
+2022/04/25 05:47:20 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:20 {Node 0} begin new heartbeat
+2022/04/25 05:47:20 {Node:0}add entrylog:{1 36 1619399072190573696} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 33 1 [{1 34 6121085174225136992} {1 35 1341931694325708934}] 33}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 36 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 33 1 [{1 34 6121085174225136992} {1 35 1341931694325708934}] 33}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 5 with state: StateCandidate
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 36 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 30 1 [{1 31 2240856218505804915} {1 32 1046688638307285516} {1 33 2458793158385583058} {1 34 6121085174225136992} {1 35 1341931694325708934}] 33}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 36 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 37 5679113411063238194} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 38 4886473624086392072} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 6 with state: StateCandidate
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 35 1 [{1 36 1619399072190573696} {1 37 5679113411063238194} {1 38 4886473624086392072}] 35}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 39 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 35 1 [{1 36 1619399072190573696} {1 37 5679113411063238194} {1 38 4886473624086392072}] 35}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 35 1 [{1 36 1619399072190573696} {1 37 5679113411063238194} {1 38 4886473624086392072}] 35}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 39 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 39 1670096659526628383} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 40 3009993188478626369} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 41 3086187865195280943} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 6 with state: StateCandidate
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 38 1 [{1 39 1670096659526628383} {1 40 3009993188478626369} {1 41 3086187865195280943}] 38}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 35 1 [{1 36 1619399072190573696} {1 37 5679113411063238194} {1 38 4886473624086392072} {1 39 1670096659526628383} {1 40 3009993188478626369} {1 41 3086187865195280943}] 38}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 42 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 42 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 42 6600884285658209545} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 43 9079650077355793609} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 44 3519822044680137160} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 38 1 [{1 39 1670096659526628383} {1 40 3009993188478626369} {1 41 3086187865195280943} {1 42 6600884285658209545} {1 43 9079650077355793609} {1 44 3519822044680137160}] 41}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 45 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 41 1 [{1 42 6600884285658209545} {1 43 9079650077355793609} {1 44 3519822044680137160}] 41}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 41 1 [{1 42 6600884285658209545} {1 43 9079650077355793609} {1 44 3519822044680137160}] 41}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 45 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 45 971265855582613912} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 46 8698183028640223507} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 47 1787007961897754340} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 44 1 [{1 45 971265855582613912}] 44}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 46 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 41 1 [{1 42 6600884285658209545} {1 43 9079650077355793609} {1 44 3519822044680137160} {1 45 971265855582613912}] 44}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 7 with state: StateCandidate
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 45 1 [{1 46 8698183028640223507} {1 47 1787007961897754340}] 44}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 48 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 44 1 [{1 45 971265855582613912} {1 46 8698183028640223507} {1 47 1787007961897754340}] 44}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 48 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 48 1325366946601554920} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 41 1 [{1 42 6600884285658209545} {1 43 9079650077355793609} {1 44 3519822044680137160} {1 45 971265855582613912} {1 46 8698183028640223507} {1 47 1787007961897754340}] 44}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 48 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 49 2982271771978902020} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 50 802687301719236211} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 47 1 [{1 48 1325366946601554920} {1 49 2982271771978902020} {1 50 802687301719236211}] 47}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 47 1 [{1 48 1325366946601554920} {1 49 2982271771978902020} {1 50 802687301719236211}] 47}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 51 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 47 1 [{1 48 1325366946601554920} {1 49 2982271771978902020} {1 50 802687301719236211}] 47}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 51 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 51 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 51 3006728234131644631} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 52 3398237950371812574} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 53 2267530024653071854} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 50 1 [{1 51 3006728234131644631} {1 52 3398237950371812574}] 50}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 50 1 [{1 51 3006728234131644631} {1 52 3398237950371812574}] 50}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 53 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 50 1 [{1 51 3006728234131644631} {1 52 3398237950371812574}] 50}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 53 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 53 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 54 4747174182561998573} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 55 4660124833899301727} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 52 1 [{1 53 2267530024653071854}] 52}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 54 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 52 1 [{1 53 2267530024653071854}] 52}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 54 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 56 2251662990379439845} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node 0} begin new heartbeat
+2022/04/25 05:47:21 {Node: 2} receives {appendreq: &{1 0 53 1 [{1 54 4747174182561998573} {1 55 4660124833899301727} {1 56 2251662990379439845}] 53}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node: 4} receives {appendreq: &{1 0 53 1 [{1 54 4747174182561998573} {1 55 4660124833899301727} {1 56 2251662990379439845}] 53}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 57 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node: 3} receives {appendreq: &{1 0 52 1 [{1 53 2267530024653071854} {1 54 4747174182561998573} {1 55 4660124833899301727} {1 56 2251662990379439845}] 53}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:21 {Node 0} receives {AppendResp: &{1 true 57 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 57 1203865651269644651} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 58 8792093283614196360} with term:1 in state:StateLeader
+2022/04/25 05:47:21 {Node:0}add entrylog:{1 59 3348015691375340013} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 56 1 [{1 57 1203865651269644651} {1 58 8792093283614196360} {1 59 3348015691375340013}] 56}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 60 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 8 with state: StateCandidate
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 53 1 [{1 54 4747174182561998573} {1 55 4660124833899301727} {1 56 2251662990379439845} {1 57 1203865651269644651} {1 58 8792093283614196360} {1 59 3348015691375340013}] 56}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 60 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 60 6296962665982170708} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 61 2220718657717521573} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 62 6973157122416548919} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node: 3} receives {appendreq: &{1 0 56 1 [{1 57 1203865651269644651} {1 58 8792093283614196360} {1 59 3348015691375340013} {1 60 6296962665982170708} {1 61 2220718657717521573} {1 62 6973157122416548919}] 59}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 63 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 59 1 [{1 60 6296962665982170708} {1 61 2220718657717521573} {1 62 6973157122416548919}] 59}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 63 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 59 1 [{1 60 6296962665982170708} {1 61 2220718657717521573} {1 62 6973157122416548919}] 59}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 63 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 63 5968655060826973615} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 64 1614452177144486074} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 65 5219754355765028552} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 62 1 [{1 63 5968655060826973615} {1 64 1614452177144486074} {1 65 5219754355765028552}] 62}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 66 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 3} receives {appendreq: &{1 0 62 1 [{1 63 5968655060826973615} {1 64 1614452177144486074} {1 65 5219754355765028552}] 62}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 66 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 66 5208605213284851546} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 62 1 [{1 63 5968655060826973615} {1 64 1614452177144486074} {1 65 5219754355765028552}] 62}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 66 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 67 1090713842166179435} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 68 746525176789792652} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 9 with state: StateCandidate
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node: 3} receives {appendreq: &{1 0 65 1 [{1 66 5208605213284851546} {1 67 1090713842166179435} {1 68 746525176789792652}] 65}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 9 with state: StateCandidate
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 65 1 [{1 66 5208605213284851546} {1 67 1090713842166179435} {1 68 746525176789792652}] 65}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 69 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 69 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 65 1 [{1 66 5208605213284851546} {1 67 1090713842166179435} {1 68 746525176789792652}] 65}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 69 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 69 4650426883048216993} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 68 1 [{1 69 4650426883048216993}] 68}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 70 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 3} receives {appendreq: &{1 0 68 1 [{1 69 4650426883048216993}] 68}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 70 2927141032908450063} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 71 8388576113743063643} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 70 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 68 1 [{1 69 4650426883048216993}] 68}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 72 1401362988244300374} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 69 1 [{1 70 2927141032908450063} {1 71 8388576113743063643} {1 72 1401362988244300374}] 69}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 73 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 68 1 [{1 69 4650426883048216993} {1 70 2927141032908450063} {1 71 8388576113743063643} {1 72 1401362988244300374}] 69}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 73 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 3} receives {appendreq: &{1 0 69 1 [{1 70 2927141032908450063} {1 71 8388576113743063643} {1 72 1401362988244300374}] 69}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:22 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 10 with state: StateCandidate
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 73 5345655226718193240} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 74 7800929892512816385} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node: 3} receives {appendreq: &{1 0 69 1 [{1 70 2927141032908450063} {1 71 8388576113743063643} {1 72 1401362988244300374} {1 73 5345655226718193240} {1 74 7800929892512816385}] 72}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 72 1 [{1 73 5345655226718193240} {1 74 7800929892512816385}] 72}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 75 5640422550308844591} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 72 1 [{1 73 5345655226718193240} {1 74 7800929892512816385}] 72}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 75 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 72 1 [{1 73 5345655226718193240} {1 74 7800929892512816385} {1 75 5640422550308844591}] 72}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 76 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 3} receives {appendreq: &{1 0 69 1 [{1 70 2927141032908450063} {1 71 8388576113743063643} {1 72 1401362988244300374} {1 73 5345655226718193240} {1 74 7800929892512816385} {1 75 5640422550308844591}] 72}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 76 -1}} from {Node 3} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 74 1 [{1 75 5640422550308844591}] 72}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 76 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 76 4745203981135740016} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 77 4346808659254072452} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 78 1039448304513356525} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 75 1 [{1 76 4745203981135740016} {1 77 4346808659254072452} {1 78 1039448304513356525}] 75}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 79 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 75 1 [{1 76 4745203981135740016} {1 77 4346808659254072452} {1 78 1039448304513356525}] 75}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 79 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 79 9151926145605171276} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 10 with state: StateCandidate
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 80 4987735505875547435} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 81 5944259378253394109} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node 0} begin new heartbeat
+2022/04/25 05:47:22 {Node: 2} receives {appendreq: &{1 0 78 1 [{1 79 9151926145605171276} {1 80 4987735505875547435} {1 81 5944259378253394109}] 78}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 82 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 4} receives {appendreq: &{1 0 78 1 [{1 79 9151926145605171276} {1 80 4987735505875547435} {1 81 5944259378253394109}] 78}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{1 true 82 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 10 with state: StateCandidate
+2022/04/25 05:47:22 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 82 7436775195987668701} with term:1 in state:StateLeader
+2022/04/25 05:47:22 {Node:0}add entrylog:{1 83 89970006760801819} with term:1 in state:StateLeader
+2022/04/25 05:47:23 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:23 {Node 0} begin new heartbeat
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node:0}add entrylog:{1 84 5393770893287896655} with term:1 in state:StateLeader
+2022/04/25 05:47:23 {Node: 4} receives {appendreq: &{1 0 81 1 [{1 82 7436775195987668701} {1 83 89970006760801819}] 81}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{1 true 84 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node 3 with state: StateFollower} begin new election
+2022/04/25 05:47:23 {Node 0} begin new heartbeat
+2022/04/25 05:47:23 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 2} in term: 2 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 4} receives {appendreq: &{1 0 83 1 [{1 84 5393770893287896655}] 81}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{1 true 85 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 11 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 2} receives {appendreq: &{1 0 81 1 [{1 82 7436775195987668701} {1 83 89970006760801819} {1 84 5393770893287896655}] 81}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{1 true 85 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node:0}add entrylog:{1 85 1845712537480444320} with term:1 in state:StateLeader
+2022/04/25 05:47:23 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 11 with state: StateCandidate
+2022/04/25 05:47:23 {Node:0}add entrylog:{1 86 3971911081947571381} with term:1 in state:StateLeader
+2022/04/25 05:47:23 {Node 0} begin new heartbeat
+2022/04/25 05:47:23 {Node: 4} receives {appendreq: &{1 0 84 1 [{1 85 1845712537480444320} {1 86 3971911081947571381}] 84}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{1 true 87 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node: 2} receives {appendreq: &{1 0 84 1 [{1 85 1845712537480444320} {1 86 3971911081947571381}] 84}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 11 with state: StateCandidate
+2022/04/25 05:47:23 {Node 0} begin new heartbeat
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node:0}add entrylog:{1 87 5959367453930175593} with term:1 in state:StateLeader
+2022/04/25 05:47:23 {Node: 2} receives {appendreq: &{1 0 84 1 [{1 85 1845712537480444320} {1 86 3971911081947571381}] 84}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{1 true 87 -1}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 2 with state: StateCandidate
+2022/04/25 05:47:23 {Node:0}add entrylog:{1 88 7549337658372111661} with term:1 in state:StateLeader
+2022/04/25 05:47:23 {Node 0} begin new heartbeat
+2022/04/25 05:47:23 {Node: 4} receives {appendreq: &{1 0 86 1 [{1 87 5959367453930175593} {1 88 7549337658372111661}] 86}} from {Node: 0} with term: 1 in state: StateFollower
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{1 true 89 -1}} from {Node 4} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node 0} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 1 with state StateLeader
+2022/04/25 05:47:23 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:23 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:23 {Node 0} begin new heartbeat
+2022/04/25 05:47:23 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 12 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 12 with state: StateCandidate
+2022/04/25 05:47:23 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:23 {Node 2 with state: StateFollower} begin new election
+2022/04/25 05:47:23 {Node: 2} received {Req: &{4 3 75 1}} from {Node: 3} with Term: 2 in state: StateCandidate
+2022/04/25 05:47:23 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 4 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 2} in term: 4 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 3} received {Req: &{2 2 86 1}} from {Node: 2} with Term: 4 in state: StateCandidate
+2022/04/25 05:47:23 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:23 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 4 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 2} receives RequestVoteResponse &{4 false} from {Node 3} in term: 4 with state: StateFollower
+2022/04/25 05:47:23 {Node: 4} received {Req: &{2 2 86 1}} from {Node: 2} with Term: 1 in state: StateFollower
+2022/04/25 05:47:23 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 4 with state: StateFollower
+2022/04/25 05:47:23 {Node 4 with state: StateFollower} begin new election
+2022/04/25 05:47:23 {Node: 3} received {Req: &{3 4 88 1}} from {Node: 4} with Term: 4 in state: StateCandidate
+2022/04/25 05:47:23 {Node: 4} receives RequestVoteResponse &{0 false} from {Node 3} in term: 3 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 2} received {Req: &{3 4 88 1}} from {Node: 4} with Term: 4 in state: StateFollower
+2022/04/25 05:47:23 {Node: 4} receives RequestVoteResponse &{4 false} from {Node 2} in term: 3 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 13 with state: StateCandidate
+2022/04/25 05:47:23 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 13 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 13 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 13 with state: StateCandidate
+2022/04/25 05:47:24 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:24 {Node 2 with state: StateFollower} begin new election
+2022/04/25 05:47:24 {Node: 4} received {Req: &{5 3 75 1}} from {Node: 3} with Term: 4 in state: StateFollower
+2022/04/25 05:47:24 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 3} in term: 5 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 3} receives RequestVoteResponse &{5 false} from {Node 4} in term: 5 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 4} received {Req: &{5 2 86 1}} from {Node: 2} with Term: 5 in state: StateFollower
+2022/04/25 05:47:24 {Node: 2} receives RequestVoteResponse &{5 false} from {Node 4} in term: 5 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 2} received {Req: &{5 3 75 1}} from {Node: 3} with Term: 5 in state: StateCandidate
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 13 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 3} receives RequestVoteResponse &{5 false} from {Node 2} in term: 5 with state: StateCandidate
+2022/04/25 05:47:24 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:24 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 5 with state: StateCandidate
+2022/04/25 05:47:24 {Node 4 with state: StateFollower} begin new election
+2022/04/25 05:47:24 {Node: 2} received {Req: &{6 4 88 1}} from {Node: 4} with Term: 5 in state: StateCandidate
+2022/04/25 05:47:24 {Node: 4} receives RequestVoteResponse &{6 true} from {Node 2} in term: 6 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 3} received {Req: &{6 4 88 1}} from {Node: 4} with Term: 5 in state: StateCandidate
+2022/04/25 05:47:24 {Node: 4} receives RequestVoteResponse &{6 true} from {Node 3} in term: 6 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 3} receives {appendreq: &{6 4 88 1 [] 86}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 14 with state: StateCandidate
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 false 76 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node: 2} receives {appendreq: &{6 4 88 1 [] 86}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 false 87 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 89 297691920779046657} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 90 1978426510883358842} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 91 2748793277265608283} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node 4} begin new heartbeat
+2022/04/25 05:47:24 {Node: 2} receives {appendreq: &{6 4 86 1 [{1 87 5959367453930175593} {1 88 7549337658372111661} {6 89 297691920779046657} {6 90 1978426510883358842} {6 91 2748793277265608283}] 86}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 true 92 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node: 3} receives {appendreq: &{6 4 75 1 [{1 76 4745203981135740016} {1 77 4346808659254072452} {1 78 1039448304513356525} {1 79 9151926145605171276} {1 80 4987735505875547435} {1 81 5944259378253394109} {1 82 7436775195987668701} {1 83 89970006760801819} {1 84 5393770893287896655} {1 85 1845712537480444320} {1 86 3971911081947571381} {1 87 5959367453930175593} {1 88 7549337658372111661} {6 89 297691920779046657} {6 90 1978426510883358842} {6 91 2748793277265608283}] 86}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 true 92 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 92 7914881540466560166} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 14 with state: StateCandidate
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 93 7969756207177633020} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 14 with state: StateCandidate
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 94 2129137204764427804} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node 4} begin new heartbeat
+2022/04/25 05:47:24 {Node: 2} receives {appendreq: &{6 4 91 6 [{6 92 7914881540466560166} {6 93 7969756207177633020} {6 94 2129137204764427804}] 91}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 true 95 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node: 3} receives {appendreq: &{6 4 91 6 [{6 92 7914881540466560166} {6 93 7969756207177633020} {6 94 2129137204764427804}] 91}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 true 95 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 95 215750246202150430} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 96 4003360370660142548} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 97 8332014652140893107} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 6 with state: StateFollower
+2022/04/25 05:47:24 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 15 with state: StateCandidate
+2022/04/25 05:47:24 {Node 4} begin new heartbeat
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 6 with state: StateFollower
+2022/04/25 05:47:24 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 6 with state: StateFollower
+2022/04/25 05:47:24 {Node 4} begin new heartbeat
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 15 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 3} receives {appendreq: &{6 4 94 6 [{6 95 215750246202150430} {6 96 4003360370660142548} {6 97 8332014652140893107}] 94}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 true 98 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node: 2} receives {appendreq: &{6 4 94 6 [{6 95 215750246202150430} {6 96 4003360370660142548} {6 97 8332014652140893107}] 94}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 true 98 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node:4}add entrylog:{6 98 2669708383959636259} with term:6 in state:StateLeader
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 15 with state: StateCandidate
+2022/04/25 05:47:24 {Node 4} begin new heartbeat
+2022/04/25 05:47:24 {Node: 3} receives {appendreq: &{6 4 97 6 [{6 98 2669708383959636259}] 97}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 true 99 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:24 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 15 with state: StateCandidate
+2022/04/25 05:47:24 {Node: 2} receives {appendreq: &{6 4 97 6 [{6 98 2669708383959636259}] 97}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:24 {Node 4} receives {AppendResp: &{6 true 99 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 99 7027095862275974988} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 100 4327572410354780685} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 98 6 [] 98}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 101 1599117959352380948} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 98 6 [] 98}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 99 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 99 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 98 6 [{6 99 7027095862275974988} {6 100 4327572410354780685} {6 101 1599117959352380948}] 98}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 102 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 98 6 [{6 99 7027095862275974988} {6 100 4327572410354780685} {6 101 1599117959352380948}] 98}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 102 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 16 with state: StateCandidate
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 102 2589564685065236881} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 103 3333954011613441468} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 104 5922487062010833012} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 101 6 [{6 102 2589564685065236881} {6 103 3333954011613441468}] 101}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 104 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 101 6 [{6 102 2589564685065236881} {6 103 3333954011613441468}] 101}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 101 6 [{6 102 2589564685065236881} {6 103 3333954011613441468} {6 104 5922487062010833012}] 101}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 103 6 [{6 104 5922487062010833012}] 101}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 105 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 105 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 105 5607039294640316065} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 106 6961462261552837335} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 1} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 107 7785310166651386536} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 104 6 [{6 105 5607039294640316065} {6 106 6961462261552837335} {6 107 7785310166651386536}] 104}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 108 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 104 6 [{6 105 5607039294640316065} {6 106 6961462261552837335} {6 107 7785310166651386536}] 104}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 108 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 108 2438523937281043502} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 109 4728676132257770348} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 110 2086880992612938516} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 107 6 [{6 108 2438523937281043502} {6 109 4728676132257770348} {6 110 2086880992612938516}] 107}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 111 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 17 with state: StateCandidate
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 17 with state: StateCandidate
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 110 6 [] 107}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 0} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 111 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 107 6 [{6 108 2438523937281043502} {6 109 4728676132257770348} {6 110 2086880992612938516}] 107}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 111 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 111 3357345335194812345} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 112 3884018758011047403} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 17 with state: StateCandidate
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 110 6 [{6 111 3357345335194812345} {6 112 3884018758011047403}] 110}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 113 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 110 6 [{6 111 3357345335194812345} {6 112 3884018758011047403}] 110}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 17 with state: StateCandidate
+2022/04/25 05:47:25 {Node: 4} receives RequestVoteResponse &{0 false} from {Node 0} in term: 6 with state: StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 113 8487571230284828208} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 17 with state: StateCandidate
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 17 with state: StateCandidate
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 112 6 [{6 113 8487571230284828208}] 110}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 114 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 110 6 [{6 111 3357345335194812345} {6 112 3884018758011047403} {6 113 8487571230284828208}] 110}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 114 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node:4}add entrylog:{6 114 1261829704456087985} with term:6 in state:StateLeader
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 18 with state: StateCandidate
+2022/04/25 05:47:25 {Node 4} begin new heartbeat
+2022/04/25 05:47:25 {Node: 2} receives {appendreq: &{6 4 113 6 [{6 114 1261829704456087985}] 113}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 115 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 3} receives {appendreq: &{6 4 113 6 [{6 114 1261829704456087985}] 113}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:25 {Node 4} receives {AppendResp: &{6 true 115 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:25 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 18 with state: StateCandidate
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 0} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 0} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 114 6 [] 114}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 115 8422641850326399061} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 115 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 116 6374369741293533680} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 117 6523253785439430119} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node: 3} receives {appendreq: &{6 4 114 6 [] 114}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 115 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 18 with state: StateCandidate
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node: 3} receives {appendreq: &{6 4 114 6 [{6 115 8422641850326399061} {6 116 6374369741293533680} {6 117 6523253785439430119}] 114}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 118 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 114 6 [{6 115 8422641850326399061} {6 116 6374369741293533680} {6 117 6523253785439430119}] 114}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 118 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 18 with state: StateCandidate
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 118 3217080371805986746} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 119 3874982179177323035} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 120 3169525329175532236} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node: 3} receives {appendreq: &{6 4 117 6 [{6 118 3217080371805986746} {6 119 3874982179177323035}] 117}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 117 6 [{6 118 3217080371805986746} {6 119 3874982179177323035}] 117}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 120 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 0} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 119 6 [{6 120 3169525329175532236}] 117}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 121 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 19 with state: StateCandidate
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 19 with state: StateCandidate
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node: 3} receives {appendreq: &{6 4 117 6 [{6 118 3217080371805986746} {6 119 3874982179177323035} {6 120 3169525329175532236}] 117}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 19 with state: StateCandidate
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 121 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 120 6 [] 117}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 121 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 19 with state: StateCandidate
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node: 3} receives {appendreq: &{6 4 120 6 [] 120}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 121 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 120 6 [] 120}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 121 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 121 6250951594522037003} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 122 990134895406667602} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 123 8668951546155839536} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node: 3} receives {appendreq: &{6 4 120 6 [{6 121 6250951594522037003} {6 122 990134895406667602} {6 123 8668951546155839536}] 120}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 124 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 120 6 [{6 121 6250951594522037003} {6 122 990134895406667602} {6 123 8668951546155839536}] 120}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 124 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 124 5722593830637635223} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 125 2446600419060006562} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 126 1011397150235498206} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 19 with state: StateCandidate
+2022/04/25 05:47:26 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:26 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 20 with state: StateCandidate
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node: 3} receives {appendreq: &{6 4 123 6 [{6 124 5722593830637635223} {6 125 2446600419060006562} {6 126 1011397150235498206}] 123}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 127 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 123 6 [{6 124 5722593830637635223} {6 125 2446600419060006562} {6 126 1011397150235498206}] 123}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 127 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 127 1021253984951723851} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 128 5717266630477746524} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node:4}add entrylog:{6 129 3800048887263627007} with term:6 in state:StateLeader
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 126 6 [{6 127 1021253984951723851} {6 128 5717266630477746524} {6 129 3800048887263627007}] 126}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 3} receives {appendreq: &{6 4 126 6 [{6 127 1021253984951723851} {6 128 5717266630477746524} {6 129 3800048887263627007}] 126}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 130 -1}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node 4} begin new heartbeat
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{0 false 0 0}} from {Node 3} in term 6 with state StateLeader
+2022/04/25 05:47:26 {Node: 2} receives {appendreq: &{6 4 126 6 [{6 127 1021253984951723851} {6 128 5717266630477746524} {6 129 3800048887263627007}] 126}} from {Node: 4} with term: 6 in state: StateFollower
+2022/04/25 05:47:26 {Node 4} receives {AppendResp: &{6 true 130 -1}} from {Node 2} in term 6 with state StateLeader
+2022/04/25 05:47:27 {Node 4} begin new heartbeat
+2022/04/25 05:47:27 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:27 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 21 with state: StateCandidate
+2022/04/25 05:47:27 {Node 3 with state: StateFollower} begin new election
+2022/04/25 05:47:27 {Node: 2} received {Req: &{7 3 129 6}} from {Node: 3} with Term: 6 in state: StateFollower
+2022/04/25 05:47:27 {Node: 3} receives RequestVoteResponse &{7 true} from {Node 2} in term: 7 with state: StateCandidate
+2022/04/25 05:47:27 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 7 with state: StateCandidate
+2022/04/25 05:47:27 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:27 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 22 with state: StateCandidate
+2022/04/25 05:47:27 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:27 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 22 with state: StateCandidate
+2022/04/25 05:47:27 {Node: 2} received {Req: &{8 3 129 6}} from {Node: 3} with Term: 7 in state: StateFollower
+2022/04/25 05:47:27 {Node: 3} receives RequestVoteResponse &{8 true} from {Node 2} in term: 8 with state: StateCandidate
+2022/04/25 05:47:27 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 22 with state: StateCandidate
+2022/04/25 05:47:27 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:27 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 8 with state: StateFollower
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 23 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 23 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 23 with state: StateCandidate
+2022/04/25 05:47:28 {Node 2 with state: StateFollower} begin new election
+2022/04/25 05:47:28 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:28 {Node: 3} received {Req: &{9 2 129 6}} from {Node: 2} with Term: 9 in state: StateCandidate
+2022/04/25 05:47:28 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 3} in term: 9 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 2} received {Req: &{9 3 129 6}} from {Node: 3} with Term: 9 in state: StateCandidate
+2022/04/25 05:47:28 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 2} in term: 9 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 23 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 23 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 23 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 23 with state: StateCandidate
+2022/04/25 05:47:28 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 24 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 24 with state: StateCandidate
+2022/04/25 05:47:28 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:28 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 10 with state: StateCandidate
+2022/04/25 05:47:28 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 24 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 24 with state: StateCandidate
+2022/04/25 05:47:28 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 25 with state: StateCandidate
+2022/04/25 05:47:28 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 25 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 11 with state: StateCandidate
+2022/04/25 05:47:28 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 25 with state: StateCandidate
+2022/04/25 05:47:29 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 25 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 2} in term: 11 with state: StateCandidate
+2022/04/25 05:47:29 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 25 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 12 with state: StateCandidate
+2022/04/25 05:47:29 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 26 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 11 with state: StateCandidate
+2022/04/25 05:47:29 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 26 with state: StateCandidate
+2022/04/25 05:47:29 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:29 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 27 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 27 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 13 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 27 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 27 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 27 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 13 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 27 with state: StateCandidate
+2022/04/25 05:47:29 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:29 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:29 {Node: 3} received {Req: &{28 1 0 0}} from {Node: 1} with Term: 13 in state: StateCandidate
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{28 false} from {Node 3} in term: 28 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 13 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 28 with state: StateCandidate
+2022/04/25 05:47:29 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 28 with state: StateFollower
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 28 with state: StateCandidate
+2022/04/25 05:47:30 {Node 3 with state: StateFollower} begin new election
+2022/04/25 05:47:30 {Node: 1} received {Req: &{29 3 129 6}} from {Node: 3} with Term: 28 in state: StateCandidate
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{29 true} from {Node 1} in term: 29 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 29 with state: StateFollower
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 29 with state: StateFollower
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 29 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 29 with state: StateFollower
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 29 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 13 with state: StateCandidate
+2022/04/25 05:47:30 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 29 with state: StateFollower
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 29 with state: StateFollower
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 29 with state: StateFollower
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 29 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 29 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 14 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 29 with state: StateFollower
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 29 with state: StateCandidate
+2022/04/25 05:47:30 {Node 1 with state: StateFollower} begin new election
+2022/04/25 05:47:30 {Node: 3} received {Req: &{30 1 0 0}} from {Node: 1} with Term: 29 in state: StateCandidate
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{30 false} from {Node 3} in term: 30 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 14 with state: StateCandidate
+2022/04/25 05:47:30 {Node 3 with state: StateFollower} begin new election
+2022/04/25 05:47:30 {Node: 1} received {Req: &{31 3 129 6}} from {Node: 3} with Term: 30 in state: StateCandidate
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{31 true} from {Node 1} in term: 31 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 31 with state: StateFollower
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 31 with state: StateCandidate
+2022/04/25 05:47:30 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:30 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 15 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 31 with state: StateFollower
+2022/04/25 05:47:30 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 15 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 15 with state: StateCandidate
+2022/04/25 05:47:30 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 31 with state: StateFollower
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 32 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 31 with state: StateFollower
+2022/04/25 05:47:30 {Node: 1} received {Req: &{32 3 129 6}} from {Node: 3} with Term: 31 in state: StateFollower
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 32 with state: StateFollower
+2022/04/25 05:47:30 {Node: 3} receives RequestVoteResponse &{32 true} from {Node 1} in term: 32 with state: StateCandidate
+2022/04/25 05:47:30 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 32 with state: StateFollower
+2022/04/25 05:47:31 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 32 with state: StateFollower
+2022/04/25 05:47:31 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 16 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 32 with state: StateFollower
+2022/04/25 05:47:31 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 16 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 32 with state: StateFollower
+2022/04/25 05:47:31 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 16 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 3} in term: 16 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 32 with state: StateCandidate
+2022/04/25 05:47:31 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:31 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 2} in term: 33 with state: StateCandidate
+2022/04/25 05:47:31 {Node 1 with state: StateFollower} begin new election
+2022/04/25 05:47:31 {Node: 1} received {Req: &{33 3 129 6}} from {Node: 3} with Term: 33 in state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 33 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 33 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} received {Req: &{33 1 0 0}} from {Node: 1} with Term: 33 in state: StateCandidate
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{33 false} from {Node 3} in term: 33 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 33 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 33 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 33 with state: StateCandidate
+2022/04/25 05:47:31 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:31 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:31 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 18 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 1} received {Req: &{34 3 129 6}} from {Node: 3} with Term: 33 in state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{34 true} from {Node 1} in term: 34 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 34 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 2} in term: 34 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 34 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 34 with state: StateFollower
+2022/04/25 05:47:31 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 34 with state: StateCandidate
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 34 with state: StateFollower
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 34 with state: StateFollower
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 34 with state: StateFollower
+2022/04/25 05:47:31 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 34 with state: StateFollower
+2022/04/25 05:47:31 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 18 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 34 with state: StateFollower
+2022/04/25 05:47:32 {Node 1 with state: StateFollower} begin new election
+2022/04/25 05:47:32 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:32 {Node: 3} received {Req: &{35 1 0 0}} from {Node: 1} with Term: 35 in state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{35 false} from {Node 3} in term: 35 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} received {Req: &{35 3 129 6}} from {Node: 3} with Term: 35 in state: StateCandidate
+2022/04/25 05:47:32 {Node: 3} receives RequestVoteResponse &{35 false} from {Node 1} in term: 35 with state: StateCandidate
+2022/04/25 05:47:32 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 35 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 19 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 35 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 3} in term: 19 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 35 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 19 with state: StateCandidate
+2022/04/25 05:47:32 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:32 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:32 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 36 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} received {Req: &{36 3 129 6}} from {Node: 3} with Term: 36 in state: StateCandidate
+2022/04/25 05:47:32 {Node: 3} receives RequestVoteResponse &{36 false} from {Node 1} in term: 36 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 3} received {Req: &{36 1 0 0}} from {Node: 1} with Term: 36 in state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{36 false} from {Node 3} in term: 36 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 36 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 36 with state: StateCandidate
+2022/04/25 05:47:32 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 36 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 36 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 20 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 36 with state: StateCandidate
+2022/04/25 05:47:32 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:32 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:32 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:32 {Node: 1} received {Req: &{37 3 129 6}} from {Node: 3} with Term: 37 in state: StateCandidate
+2022/04/25 05:47:32 {Node: 3} receives RequestVoteResponse &{37 false} from {Node 1} in term: 37 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 37 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 3} received {Req: &{37 1 0 0}} from {Node: 1} with Term: 37 in state: StateCandidate
+2022/04/25 05:47:32 {Node: 1} receives RequestVoteResponse &{37 false} from {Node 3} in term: 37 with state: StateCandidate
+2022/04/25 05:47:32 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 21 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 37 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 37 with state: StateCandidate
+2022/04/25 05:47:33 {Node 3 with state: StateCandidate} begin new election
+2022/04/25 05:47:33 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 3} in term: 38 with state: StateCandidate
+2022/04/25 05:47:33 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:33 {Node: 1} received {Req: &{38 3 129 6}} from {Node: 3} with Term: 38 in state: StateCandidate
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{38 false} from {Node 1} in term: 38 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 38 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 38 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 22 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 38 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 22 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 38 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 1} in term: 38 with state: StateCandidate
+2022/04/25 05:47:33 {Node 2 with state: StateCandidate} begin new election
+2022/04/25 05:47:33 {Node: 4} received {Req: &{23 2 129 6}} from {Node: 2} with Term: 6 in state: StateFollower
+2022/04/25 05:47:33 {Node: 0} received {Req: &{23 2 129 6}} from {Node: 2} with Term: 1 in state: StateFollower
+2022/04/25 05:47:33 {Node: 1} received {Req: &{23 2 129 6}} from {Node: 2} with Term: 38 in state: StateCandidate
+2022/04/25 05:47:33 {Node: 3} received {Req: &{23 2 129 6}} from {Node: 2} with Term: 38 in state: StateCandidate
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{38 false} from {Node 1} in term: 23 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{23 true} from {Node 0} in term: 38 with state: StateFollower
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{23 true} from {Node 4} in term: 38 with state: StateFollower
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{38 false} from {Node 3} in term: 38 with state: StateFollower
+2022/04/25 05:47:33 {Node 1 with state: StateCandidate} begin new election
+2022/04/25 05:47:33 {Node: 2} received {Req: &{39 1 0 0}} from {Node: 1} with Term: 38 in state: StateFollower
+2022/04/25 05:47:33 {Node: 3} received {Req: &{39 1 0 0}} from {Node: 1} with Term: 38 in state: StateCandidate
+2022/04/25 05:47:33 {Node: 0} received {Req: &{39 1 0 0}} from {Node: 1} with Term: 23 in state: StateFollower
+2022/04/25 05:47:33 {Node: 4} received {Req: &{39 1 0 0}} from {Node: 1} with Term: 23 in state: StateFollower
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{39 false} from {Node 3} in term: 39 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{39 false} from {Node 4} in term: 39 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{39 false} from {Node 2} in term: 39 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{39 false} from {Node 0} in term: 39 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 3} in term: 39 with state: StateFollower
+2022/04/25 05:47:33 {Node 3 with state: StateFollower} begin new election
+2022/04/25 05:47:33 {Node: 1} received {Req: &{40 3 129 6}} from {Node: 3} with Term: 39 in state: StateCandidate
+2022/04/25 05:47:33 {Node: 2} received {Req: &{40 3 129 6}} from {Node: 3} with Term: 39 in state: StateFollower
+2022/04/25 05:47:33 {Node: 4} received {Req: &{40 3 129 6}} from {Node: 3} with Term: 39 in state: StateFollower
+2022/04/25 05:47:33 {Node: 0} received {Req: &{40 3 129 6}} from {Node: 3} with Term: 39 in state: StateFollower
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{40 true} from {Node 1} in term: 40 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{40 true} from {Node 4} in term: 40 with state: StateCandidate
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{40 true} from {Node 2} in term: 40 with state: StateLeader
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{40 true} from {Node 0} in term: 40 with state: StateLeader
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateLeader
+2022/04/25 05:47:33 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 false 1 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 false 89 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateFollower
+2022/04/25 05:47:33 {Node 3} begin new heartbeat
+2022/04/25 05:47:33 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node: 0} receives {appendreq: &{40 3 88 1 [{6 89 297691920779046657} {6 90 1978426510883358842} {6 91 2748793277265608283} {6 92 7914881540466560166} {6 93 7969756207177633020} {6 94 2129137204764427804} {6 95 215750246202150430} {6 96 4003360370660142548} {6 97 8332014652140893107} {6 98 2669708383959636259} {6 99 7027095862275974988} {6 100 4327572410354780685} {6 101 1599117959352380948} {6 102 2589564685065236881} {6 103 3333954011613441468} {6 104 5922487062010833012} {6 105 5607039294640316065} {6 106 6961462261552837335} {6 107 7785310166651386536} {6 108 2438523937281043502} {6 109 4728676132257770348} {6 110 2086880992612938516} {6 111 3357345335194812345} {6 112 3884018758011047403} {6 113 8487571230284828208} {6 114 1261829704456087985} {6 115 8422641850326399061} {6 116 6374369741293533680} {6 117 6523253785439430119} {6 118 3217080371805986746} {6 119 3874982179177323035} {6 120 3169525329175532236} {6 121 6250951594522037003} {6 122 990134895406667602} {6 123 8668951546155839536} {6 124 5722593830637635223} {6 125 2446600419060006562} {6 126 1011397150235498206} {6 127 1021253984951723851} {6 128 5717266630477746524} {6 129 3800048887263627007}] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node: 1} receives {appendreq: &{40 3 0 0 [{1 1 3788947475083528650} {1 2 4956110097331282267} {1 3 8191760884279101394} {1 4 5037200041267729788} {1 5 7887244969359402961} {1 6 6892829932812440587} {1 7 2774090144996689630} {1 8 1706213031304998123} {1 9 9026737506760419546} {1 10 7626510269083178086} {1 11 4760489533950578536} {1 12 8390568587990075413} {1 13 764356243653662058} {1 14 8589580053115125495} {1 15 2310577351193402778} {1 16 3858807060403867315} {1 17 257986435321510781} {1 18 8733201691662079299} {1 19 335604771107222110} {1 20 6157568135074944843} {1 21 6084832370734555489} {1 22 8203180691961848961} {1 23 1468917058832790645} {1 24 8900458227020874954} {1 25 5291817761746792704} {1 26 4436712319420893177} {1 27 5517897833765320186} {1 28 6400617488350398726} {1 29 4155250007531111274} {1 30 5988339650969929935} {1 31 2240856218505804915} {1 32 1046688638307285516} {1 33 2458793158385583058} {1 34 6121085174225136992} {1 35 1341931694325708934} {1 36 1619399072190573696} {1 37 5679113411063238194} {1 38 4886473624086392072} {1 39 1670096659526628383} {1 40 3009993188478626369} {1 41 3086187865195280943} {1 42 6600884285658209545} {1 43 9079650077355793609} {1 44 3519822044680137160} {1 45 971265855582613912} {1 46 8698183028640223507} {1 47 1787007961897754340} {1 48 1325366946601554920} {1 49 2982271771978902020} {1 50 802687301719236211} {1 51 3006728234131644631} {1 52 3398237950371812574} {1 53 2267530024653071854} {1 54 4747174182561998573} {1 55 4660124833899301727} {1 56 2251662990379439845} {1 57 1203865651269644651} {1 58 8792093283614196360} {1 59 3348015691375340013} {1 60 6296962665982170708} {1 61 2220718657717521573} {1 62 6973157122416548919} {1 63 5968655060826973615} {1 64 1614452177144486074} {1 65 5219754355765028552} {1 66 5208605213284851546} {1 67 1090713842166179435} {1 68 746525176789792652} {1 69 4650426883048216993} {1 70 2927141032908450063} {1 71 8388576113743063643} {1 72 1401362988244300374} {1 73 5345655226718193240} {1 74 7800929892512816385} {1 75 5640422550308844591} {1 76 4745203981135740016} {1 77 4346808659254072452} {1 78 1039448304513356525} {1 79 9151926145605171276} {1 80 4987735505875547435} {1 81 5944259378253394109} {1 82 7436775195987668701} {1 83 89970006760801819} {1 84 5393770893287896655} {1 85 1845712537480444320} {1 86 3971911081947571381} {1 87 5959367453930175593} {1 88 7549337658372111661} {6 89 297691920779046657} {6 90 1978426510883358842} {6 91 2748793277265608283} {6 92 7914881540466560166} {6 93 7969756207177633020} {6 94 2129137204764427804} {6 95 215750246202150430} {6 96 4003360370660142548} {6 97 8332014652140893107} {6 98 2669708383959636259} {6 99 7027095862275974988} {6 100 4327572410354780685} {6 101 1599117959352380948} {6 102 2589564685065236881} {6 103 3333954011613441468} {6 104 5922487062010833012} {6 105 5607039294640316065} {6 106 6961462261552837335} {6 107 7785310166651386536} {6 108 2438523937281043502} {6 109 4728676132257770348} {6 110 2086880992612938516} {6 111 3357345335194812345} {6 112 3884018758011047403} {6 113 8487571230284828208} {6 114 1261829704456087985} {6 115 8422641850326399061} {6 116 6374369741293533680} {6 117 6523253785439430119} {6 118 3217080371805986746} {6 119 3874982179177323035} {6 120 3169525329175532236} {6 121 6250951594522037003} {6 122 990134895406667602} {6 123 8668951546155839536} {6 124 5722593830637635223} {6 125 2446600419060006562} {6 126 1011397150235498206} {6 127 1021253984951723851} {6 128 5717266630477746524} {6 129 3800048887263627007}] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 3} in term: 40 with state: StateFollower
+2022/04/25 05:47:33 {Node 3} begin new heartbeat
+2022/04/25 05:47:33 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:33 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 40 with state: StateFollower
+2022/04/25 05:47:33 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateLeader
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 2} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 4} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 2} in term: 40 with state: StateLeader
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 4} in term: 40 with state: StateLeader
+2022/04/25 05:47:34 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateLeader
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 129 6 [] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 130 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 1} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives RequestVoteResponse &{0 false} from {Node 4} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node:3}add entrylog:{40 130 4949863691503305319} with term:40 in state:StateLeader
+2022/04/25 05:47:34 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 3} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node: 2} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateFollower
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 129 6 [{40 130 4949863691503305319}] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 129 6 [{40 130 4949863691503305319}] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 129 6 [{40 130 4949863691503305319}] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 129 6 [{40 130 4949863691503305319}] 126}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 131 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 131 -1}} from {Node 0} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 131 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 131 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node: 3} receives RequestVoteResponse &{0 false} from {Node 0} in term: 40 with state: StateLeader
+2022/04/25 05:47:34 {Node 3} begin new heartbeat
+2022/04/25 05:47:34 {Node: 2} receives {appendreq: &{40 3 130 40 [] 130}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 1} receives {appendreq: &{40 3 130 40 [] 130}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 4} receives {appendreq: &{40 3 130 40 [] 130}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node: 0} receives {appendreq: &{40 3 130 40 [] 130}} from {Node: 3} with term: 40 in state: StateFollower
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 131 -1}} from {Node 4} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 131 -1}} from {Node 1} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 131 -1}} from {Node 2} in term 40 with state StateLeader
+2022/04/25 05:47:34 {Node 3} receives {AppendResp: &{40 true 131 -1}} from {Node 0} in term 40 with state StateLeader
+  ... Passed --  16.3  5  644  207493  130
+--- PASS: TestUnreliableChurn2C (16.26s)
+PASS
