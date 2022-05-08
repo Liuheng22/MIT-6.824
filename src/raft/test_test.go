@@ -288,19 +288,19 @@ func TestFailAgree2B(t *testing.T) {
 	// disconnect one follower from the network.
 	leader := cfg.checkOneLeader()
 	cfg.disconnect((leader + 1) % servers)
-	DPrintf("disconnect")
+	// Dprintf("disconnect")
 	// the leader and remaining follower should be
 	// able to agree despite the disconnected follower.
 	cfg.one(102, servers-1, false)
 	cfg.one(103, servers-1, false)
 	time.Sleep(RaftElectionTimeout)
-	DPrintf("insert 104")
+	// Dprintf("insert 104")
 	cfg.one(104, servers-1, false)
 	cfg.one(105, servers-1, false)
 
 	// re-connect
 	cfg.connect((leader + 1) % servers)
-	DPrintf("connect")
+	// Dprintf("connect")
 	// the full set of servers should preserve
 	// previous agreements, and be able to agree
 	// on new commands.
@@ -691,21 +691,21 @@ func TestPersist12C(t *testing.T) {
 	cfg.begin("Test (2C): basic persistence")
 
 	cfg.one(11, servers, true)
-	DPrintf("hthh")
+	// Dprintf("hthh")
 	// crash and re-start all
 	for i := 0; i < servers; i++ {
 		cfg.start1(i, cfg.applier)
 	}
-	DPrintf("rrr")
+	// Dprintf("rrr")
 	for i := 0; i < servers; i++ {
 		cfg.disconnect(i)
 		cfg.connect(i)
 	}
-	DPrintf("QQQQ")
+	// Dprintf("QQQQ")
 	cfg.one(12, servers, true)
-	DPrintf("WQWWW")
+	// Dprintf("WQWWW")
 	leader1 := cfg.checkOneLeader()
-	DPrintf("xxxxxxxxxxxx")
+	// Dprintf("xxxxxxxxxxxx")
 	cfg.disconnect(leader1)
 	cfg.start1(leader1, cfg.applier)
 	cfg.connect(leader1)
@@ -828,7 +828,7 @@ func TestFigure82C(t *testing.T) {
 
 	nup := servers
 	for iters := 0; iters < 1000; iters++ {
-		DPrintf("iter:%d", iters)
+		// Dprintf("iter:%d", iters)
 		leader := -1
 		for i := 0; i < servers; i++ {
 			if cfg.rafts[i] != nil {
@@ -1125,6 +1125,7 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 	leader1 := cfg.checkOneLeader()
 
 	for i := 0; i < iters; i++ {
+		// Dprintf("iter:%d", i)
 		victim := (leader1 + 1) % servers
 		sender := leader1
 		if i%3 == 1 {
@@ -1133,10 +1134,12 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 		}
 
 		if disconnect {
+			// Dprintf("disconnect %v", victim)
 			cfg.disconnect(victim)
 			cfg.one(rand.Int(), servers-1, true)
 		}
 		if crash {
+			// Dprintf("crash %v", victim)
 			cfg.crash1(victim)
 			cfg.one(rand.Int(), servers-1, true)
 		}
@@ -1158,6 +1161,7 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 		}
 
 		if cfg.LogSize() >= MAXLOGSIZE {
+			// Dprintf("here")
 			cfg.t.Fatalf("Log size too large")
 		}
 		if disconnect {
