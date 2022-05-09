@@ -1,6 +1,7 @@
 package kvraft
 
 import (
+	"bytes"
 	"log"
 	"sync"
 	"sync/atomic"
@@ -51,6 +52,9 @@ type KVServer struct {
 	db      map[string]string
 	notify  map[int]chan Response
 	applied map[int64]int64
+
+	persister *raft.Persister
+	lastindex int //
 }
 
 func (kv *KVServer) getreschan(index int) chan Response {
@@ -80,10 +84,18 @@ func (kv *KVServer) Proposal(command *Op) (bool, *Response) {
 	DPrintf("kv:%d free lock", kv.me)
 	select {
 	case resp := <-reschan:
+		go kv.removech(index)
 		return kv.issamereq(command, &resp), &resp
 	case <-time.After(500 * time.Millisecond):
+		go kv.removech(index)
 		return false, &Response{}
 	}
+}
+
+func (kv *KVServer) removech(index int) {
+	kv.mu.Lock()
+	defer kv.mu.Unlock()
+	delete(kv.notify, index)
 }
 
 func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
@@ -147,6 +159,33 @@ func (kv *KVServer) applydb(command *Op, resp *Response) {
 	}
 }
 
+func (kv *KVServer) snap() []byte {
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+	e.Encode(kv.db)
+	e.Encode(kv.applied)
+	e.Encode(kv.lastindex)
+	data := w.Bytes()
+	return data
+}
+
+func (kv *KVServer) ingestSnap(snapshot []byte) {
+	if snapshot == nil || len(snapshot) < 1 {
+		return
+	}
+	var db map[string]string
+	var applied map[int64]int64
+	var lastIndex int
+	r := bytes.NewBuffer(snapshot)
+	d := labgob.NewDecoder(r)
+	d.Decode(&db)
+	d.Decode(&applied)
+	d.Decode(&lastIndex)
+	kv.db = db
+	kv.applied = applied
+	kv.lastindex = lastIndex
+}
+
 func (kv *KVServer) applier() {
 	for kv.killed() == false {
 		msg := <-kv.applyCh
@@ -168,9 +207,21 @@ func (kv *KVServer) applier() {
 					kv.applied[command.ClientId] = command.RequestId
 				}
 			}
-
+			// 修改应用的command index
+			if msg.CommandIndex == kv.lastindex+1 {
+				kv.lastindex++
+			}
+			if kv.maxraftstate != -1 && kv.persister.RaftStateSize() >= kv.maxraftstate {
+				snapshot := kv.snap()
+				kv.rf.Snapshot(kv.lastindex, snapshot)
+			}
 			reschan := kv.getreschan(index)
 			reschan <- resp
+			kv.mu.Unlock()
+		} else if msg.SnapshotValid {
+			// 收到了snapshot,那么
+			kv.mu.Lock()
+			kv.ingestSnap(msg.Snapshot)
 			kv.mu.Unlock()
 		}
 	}
@@ -195,6 +246,10 @@ func (kv *KVServer) Kill() {
 func (kv *KVServer) killed() bool {
 	z := atomic.LoadInt32(&kv.dead)
 	return z == 1
+}
+
+func (kv *KVServer) readsnap() {
+	kv.ingestSnap(kv.persister.ReadSnapshot())
 }
 
 //
@@ -226,9 +281,11 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.rf = raft.Make(servers, me, persister, kv.applyCh)
 
 	// You may need initialization code here.
+	kv.persister = persister
 	kv.db = make(map[string]string)
 	kv.notify = make(map[int]chan Response)
 	kv.applied = make(map[int64]int64)
+	kv.readsnap()
 	go kv.applier()
 	return kv
 }

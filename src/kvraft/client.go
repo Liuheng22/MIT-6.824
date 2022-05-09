@@ -3,7 +3,6 @@ package kvraft
 import (
 	"crypto/rand"
 	"math/big"
-	"sync/atomic"
 
 	"6.824/labrpc"
 )
@@ -51,11 +50,11 @@ func (ck *Clerk) Get(key string) string {
 	// 发送rpc给kvserver
 	// 发送给每一个可能的kvserver
 	// 给request一个序号
-	reqid := atomic.AddInt64(&ck.request, 1)
-	leader := atomic.LoadInt32(&ck.leaderid)
+	ck.request++
+	leader := ck.leaderid
 
 	value := ""
-	args := &GetArgs{Key: key, Clientid: ck.clientid, Reqid: reqid}
+	args := &GetArgs{Key: key, Clientid: ck.clientid, Reqid: ck.request}
 	for ; ; leader = (leader + 1) % int32(len(ck.servers)) {
 		reply := &GetReply{}
 		ok := ck.servers[leader].Call("KVServer.Get", args, reply)
@@ -65,8 +64,7 @@ func (ck *Clerk) Get(key string) string {
 			break
 		}
 	}
-	DPrintf("{Clerk:%d} recive reply %v", ck.clientid, value)
-	atomic.StoreInt32(&ck.leaderid, leader)
+	ck.leaderid = leader
 	return value
 }
 
@@ -82,10 +80,10 @@ func (ck *Clerk) Get(key string) string {
 //
 func (ck *Clerk) PutAppend(key string, value string, op string) {
 	// You will have to modify this function.
-	reqid := atomic.AddInt64(&ck.request, 1)
-	leader := atomic.LoadInt32(&ck.leaderid)
+	ck.request++
+	leader := ck.leaderid
 
-	args := &PutAppendArgs{Key: key, Value: value, Op: op, Clientid: ck.clientid, Reqid: reqid}
+	args := &PutAppendArgs{Key: key, Value: value, Op: op, Clientid: ck.clientid, Reqid: ck.request}
 	for ; ; leader = (leader + 1) % int32(len(ck.servers)) {
 		reply := &PutAppendReply{}
 		ok := ck.servers[leader].Call("KVServer.PutAppend", args, reply)
@@ -94,7 +92,7 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 			break
 		}
 	}
-	atomic.StoreInt32(&ck.leaderid, leader)
+	ck.leaderid = leader
 }
 
 func (ck *Clerk) Put(key string, value string) {

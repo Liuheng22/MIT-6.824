@@ -79,6 +79,13 @@ func (st StateType) String() string {
 	return stmap[uint64(st)]
 }
 
+const (
+	ELECTION_TIMEOUT_MAX = 100
+	ELECTION_TIMEOUT_MIN = 50
+
+	HEARTBEAT_TIMEOUT = 27
+)
+
 //
 // A Go object implementing a single Raft peer.
 //
@@ -115,12 +122,12 @@ type Raft struct {
 }
 
 func Heartbeat() time.Duration {
-	return time.Millisecond * 100
+	return time.Millisecond * HEARTBEAT_TIMEOUT
 }
 func Election() time.Duration {
 	// DPrintf("%v", time.Now())
 	rand.Seed(time.Now().UnixNano())
-	return time.Millisecond * time.Duration(rand.Intn(200)+300)
+	return time.Millisecond * time.Duration(rand.Intn(ELECTION_TIMEOUT_MAX-ELECTION_TIMEOUT_MIN)+ELECTION_TIMEOUT_MIN)
 }
 
 func (rf *Raft) tofollower(term int) {
@@ -280,7 +287,7 @@ func (rf *Raft) CondInstallSnapshot(lastIncludedTerm int, lastIncludedIndex int,
 // that index. Raft should now trim its log as much as possible.
 func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// Your code here (2D).
-	// DPrintf("xxxx")
+	DPrintf("{node:%d} snapshot from %d", rf.me, index)
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	// DPrintf("snap")
@@ -537,7 +544,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	defer rf.mu.Unlock()
 	defer rf.persist()
 	if flag == "append" || flag == "all" {
-		DPrintf("{Node: %d} receives {appendreq: %v} from {Node: %d} with term: %d in state: %v", rf.me, args, args.Leaderid, rf.currentTerm, rf.state.String())
+		DPrintf("{Node:%d} receives {appendreq: %v} from {Node: %d} with term: %d in state: %v", rf.me, args, args.Leaderid, rf.currentTerm, rf.state.String())
 	}
 
 	// 如果收到的args的term小于我的term，那么我肯定拒绝
@@ -585,6 +592,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		}
 	} else {
 		// 这种情况是，匹配成功,那么就转变为follower
+		DPrintf("{Node:%d} append succes with prelogIndex:%d and baseindex:%d", rf.me, args.PrevLogIndex, baseindex)
 		rf.log = rf.log[:args.PrevLogIndex-baseindex+1]
 		rf.log = append(rf.log, args.Entries...)
 
@@ -619,7 +627,7 @@ func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *Ap
 		return ok
 	}
 	if flag == "append" || flag == "all" {
-		DPrintf("{Node %d} receives {AppendResp: %v} from {Node %d} in term %d with state %v", rf.me, reply, server, rf.currentTerm, rf.state.String())
+		DPrintf("{Node:%d} receives {AppendResp: %v} from {Node %d} in term %d with state %v", rf.me, reply, server, rf.currentTerm, rf.state.String())
 	}
 
 	if !ok || rf.state != StateLeader || args.Term != rf.currentTerm {
@@ -665,7 +673,7 @@ func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *Ap
 			}
 		}
 		N, _ := rf.getlastlogindexandterm()
-		DPrintf("Apply change from %d", N)
+		// DPrintf("Apply change from %d", N)
 		for ; N > rf.commitIndex; N-- {
 			// 看看是否有超过一半以上提交的，有的话，应用
 			// 只提交当前term的日志
@@ -679,7 +687,7 @@ func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *Ap
 					count++
 				}
 			}
-			DPrintf("Command:%d with %d agree", N, count)
+			// DPrintf("Command:%d with %d agree", N, count)
 			if count > len(rf.peers)/2 {
 				rf.commitIndex = N
 				go func() { rf.applylog <- true }()
@@ -708,6 +716,7 @@ func (rf *Raft) applysnap(args *InstallSnapshotArgs) {
 	rf.commitIndex = max(rf.commitIndex, args.LastIncludedIndex)
 	rf.log = log
 	go func() {
+		DPrintf("{Node:%d} apply snap from term:%d with index %d", rf.me, args.LastIncludedTerm, args.LastIncludedIndex)
 		rf.applyCh <- ApplyMsg{
 			SnapshotValid: true,
 			Snapshot:      args.Snapshot,
