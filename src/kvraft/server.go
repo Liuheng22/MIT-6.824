@@ -192,6 +192,12 @@ func (kv *KVServer) applier() {
 		if msg.CommandValid {
 			// 是command
 			kv.mu.Lock()
+			// 由于发送是不锁的，那么有可能有过期的command，扔掉就好
+			if msg.CommandIndex <= kv.lastindex {
+				kv.mu.Unlock()
+				continue
+			}
+
 			index := msg.CommandIndex
 			command := msg.Command.(Op)
 			resp := Response{Err: OK, Value: "", ClientId: command.ClientId, RequestId: command.RequestId}

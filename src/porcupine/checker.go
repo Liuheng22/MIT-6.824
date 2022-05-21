@@ -232,6 +232,7 @@ func checkSingle(model Model, history []entry, computePartial bool, kill *int32)
 					}
 				}
 			}
+			// 返回
 			callsTop := calls[len(calls)-1]
 			entry = callsTop.entry
 			state = callsTop.state

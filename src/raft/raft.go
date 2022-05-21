@@ -80,10 +80,10 @@ func (st StateType) String() string {
 }
 
 const (
-	ELECTION_TIMEOUT_MAX = 100
-	ELECTION_TIMEOUT_MIN = 50
+	ELECTION_TIMEOUT_MAX = 500
+	ELECTION_TIMEOUT_MIN = 300
 
-	HEARTBEAT_TIMEOUT = 27
+	HEARTBEAT_TIMEOUT = 100
 )
 
 //
@@ -287,7 +287,6 @@ func (rf *Raft) CondInstallSnapshot(lastIncludedTerm int, lastIncludedIndex int,
 // that index. Raft should now trim its log as much as possible.
 func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// Your code here (2D).
-	DPrintf("{node:%d} snapshot from %d", rf.me, index)
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	// DPrintf("snap")
@@ -296,11 +295,12 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 		// 收到的snapshot比我第一个小，那么什么也不做
 		return
 	}
-	// log := make([]EntryLog, 0)
-	// log = append(log, rf.log[index-baseindex:]...)
-	rf.log = rf.log[index-baseindex:]
+	log := make([]EntryLog, 0)
+	log = append(log, rf.log[index-baseindex:]...)
+	rf.log = log
 	rf.log[0].Command = nil // 第一个为dummy entry
 	rf.persister.SaveStateAndSnapshot(rf.raftstate(), snapshot)
+	DPrintf("{node:%d} snapshot from %d with baseindex:%d with committedidx:%d with applied:%d", rf.me, index, rf.log[0].Index, rf.commitIndex, rf.lastApplied)
 }
 
 //
@@ -504,7 +504,8 @@ func (rf *Raft) applylogs() {
 			if flag == "append" || flag == "all" {
 				DPrintf("{Node:%d} applied entries %d-%d in term:%d", rf.me, rf.lastApplied, commitIndex, rf.currentTerm)
 			}
-			rf.lastApplied = commitIndex
+			// 因为这个期间有可能会有snapshot应用上去，会修改lastapplied
+			rf.lastApplied = max(rf.lastApplied, commitIndex)
 			rf.mu.Unlock()
 		}
 	}
@@ -580,7 +581,11 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		reply.TryIndex = lastindex + 1
 		return
 	}
-
+	// 发送rpc的时候，这边应用了snap
+	if baseindex > args.PrevLogIndex {
+		reply.TryIndex = baseindex + 1
+		return
+	}
 	if args.PrevLogIndex >= baseindex && rf.log[args.PrevLogIndex-baseindex].Term != args.PrevLogTerm {
 		term := rf.log[args.PrevLogIndex-baseindex].Term
 		reply.Term = term
@@ -701,10 +706,17 @@ func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *Ap
 func (rf *Raft) applysnap(args *InstallSnapshotArgs) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
+	// 后面状态改变了
+	defer rf.persister.SaveStateAndSnapshot(rf.raftstate(), args.Snapshot)
 	// 保存snap
 	snapshotindex := rf.log[0].Index
 	lastindex, _ := rf.getlastlogindexandterm()
-	rf.persister.SaveStateAndSnapshot(rf.raftstate(), args.Snapshot)
+
+	// 发来的可能是老snap,扔掉
+	if args.LastIncludedIndex <= snapshotindex {
+		return
+	}
+
 	log := make([]EntryLog, 1)
 	if lastindex >= args.LastIncludedIndex && rf.log[args.LastIncludedIndex-snapshotindex].Term == args.LastIncludedTerm {
 		log = append(log, rf.log[args.LastIncludedIndex-snapshotindex+1:]...)
@@ -716,7 +728,7 @@ func (rf *Raft) applysnap(args *InstallSnapshotArgs) {
 	rf.commitIndex = max(rf.commitIndex, args.LastIncludedIndex)
 	rf.log = log
 	go func() {
-		DPrintf("{Node:%d} apply snap from term:%d with index %d", rf.me, args.LastIncludedTerm, args.LastIncludedIndex)
+		DPrintf("{Node:%d} apply snap  from {node:%d} term:%d with index %d", rf.me, args.LeaderId, args.LastIncludedTerm, args.LastIncludedIndex)
 		rf.applyCh <- ApplyMsg{
 			SnapshotValid: true,
 			Snapshot:      args.Snapshot,
@@ -742,6 +754,7 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapsho
 	if args.Term > rf.currentTerm {
 		rf.tofollower(args.Term)
 	}
+	rf.electiontimer.Reset(Election())
 	// 丢弃较小索引的快照
 	reply.Term = rf.currentTerm
 	snapshotindex := rf.log[0].Index
@@ -959,7 +972,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.applylog = make(chan bool)
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
-
+	DPrintf("{Node :%d} re-start with applyindex:%d and committedindex:%d and baseindex:%d", rf.me, rf.lastApplied, rf.commitIndex, rf.log[0].Index)
 	// 应用log
 	go rf.applylogs()
 	// start ticker goroutine to start elections

@@ -276,9 +276,9 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 					key = strconv.Itoa(cli)
 				}
 				nv := "x " + strconv.Itoa(cli) + " " + strconv.Itoa(j) + " y"
-				DPrintf("{key %v val: %v}", key, nv)
+				// DPrintf("{key %v val: %v}", key, nv)
 				if (rand.Int() % 1000) < 500 {
-					// log.Printf("%d: client new append %v\n", cli, nv)
+					// DPrintf("%d: client new append %v\n", cli, nv)
 					Append(cfg, myck, key, nv, opLog, cli)
 					if !randomkeys {
 						last = NextValue(last, nv)
@@ -290,7 +290,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 					Put(cfg, myck, key, nv, opLog, cli)
 					j++
 				} else {
-					// log.Printf("%d: client new get %v\n", cli, key)
+					// DPrintf("%d: client new get %v\n", cli, key)
 					v := Get(cfg, myck, key, opLog, cli)
 					// the following check only makes sense when we're not using random keys
 					if !randomkeys && v != last {
@@ -299,7 +299,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 				}
 			}
 		})
-
+		DPrintf("xxxxxxxxxxxxx")
 		if partitions {
 			// Allow the clients to perform some operations without interruption
 			time.Sleep(1 * time.Second)
@@ -310,7 +310,10 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 		atomic.StoreInt32(&done_clients, 1)     // tell clients to quit
 		atomic.StoreInt32(&done_partitioner, 1) // tell partitioner to quit
 
+		DPrintf("should to quit")
+
 		if partitions {
+			DPrintf("wait for partitioner")
 			// log.Printf("wait for partitioner\n")
 			<-ch_partitioner
 			// reconnect network and submit a request. A client may
@@ -323,6 +326,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 		}
 
 		if crash {
+			DPrintf("shutdown server")
 			// log.Printf("shutdown servers\n")
 			for i := 0; i < nservers; i++ {
 				cfg.ShutdownServer(i)
@@ -330,7 +334,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 			// Wait for a while for servers to shutdown, since
 			// shutdown isn't a real crash and isn't instantaneous
 			time.Sleep(electionTimeout)
-			// log.Printf("restart servers\n")
+			DPrintf("restart servers")
 			// crash and re-start all
 			for i := 0; i < nservers; i++ {
 				cfg.StartServer(i)
@@ -338,10 +342,13 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 			cfg.ConnectAll()
 		}
 
+		DPrintf("wait for clients")
 		// log.Printf("wait for clients\n")
 		for i := 0; i < nclients; i++ {
+			DPrintf("read from client %d\n", i)
 			// log.Printf("read from clients %d\n", i)
 			j := <-clnts[i]
+			DPrintf("recieve j %d", i)
 			// if j < 10 {
 			// 	log.Printf("Warning: client %d managed to perform only %d put operations in 1 sec?\n", i, j)
 			// }
@@ -352,7 +359,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 				checkClntAppends(t, i, v, j)
 			}
 		}
-
+		DPrintf("is snapsnot?")
 		if maxraftstate > 0 {
 			// Check maximum after the servers have processed all client
 			// requests and had time to checkpoint.
@@ -368,7 +375,10 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 				t.Fatalf("snapshot too large (%v), should not be used when maxraftstate = %d", ssz, maxraftstate)
 			}
 		}
+		DPrintf("finish a round")
 	}
+
+	DPrintf("check logs")
 
 	res, info := porcupine.CheckOperationsVerbose(models.KvModel, opLog.Read(), linearizabilityCheckTimeout)
 	if res == porcupine.Illegal {
