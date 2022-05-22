@@ -426,8 +426,8 @@ func GenericTestSpeed(t *testing.T, part string, maxraftstate int) {
 	checkClntAppends(t, 0, v, numOps)
 
 	// heartbeat interval should be ~ 100 ms; require at least 3 ops per
-	const heartbeatInterval = 1000 * time.Millisecond
-	const opsPerInterval = 3
+	const heartbeatInterval = 100 * time.Millisecond
+	const opsPerInterval = 1
 	const timePerOp = heartbeatInterval / opsPerInterval
 	if dur > numOps*timePerOp {
 		t.Fatalf("Operations completed too slowly %v/op > %v/op\n", dur/numOps, timePerOp)

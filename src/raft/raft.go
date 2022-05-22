@@ -598,8 +598,17 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	} else {
 		// 这种情况是，匹配成功,那么就转变为follower
 		DPrintf("{Node:%d} append succes with prelogIndex:%d and baseindex:%d", rf.me, args.PrevLogIndex, baseindex)
-		rf.log = rf.log[:args.PrevLogIndex-baseindex+1]
-		rf.log = append(rf.log, args.Entries...)
+		// 如果发过来的log是过期的log呢
+		// 首先如果发过来的log比较一下，如果当前的log已经是新的log，自己没有，那么无脑复制粘贴就好了
+		// 如果这个index我也有，那么看term，同一个term不会发送不一致的东西，这个时候就不是匹配的了，应用leader的东西
+		// 因为可能有网络原因或者因为同步关系，leader发来的是老消息，这个时候不应该应用进去
+		for index, entry := range args.Entries {
+			if entry.Index-baseindex >= len(rf.log) || rf.log[entry.Index-baseindex].Term != entry.Term {
+				rf.log = append(rf.log[:entry.Index-baseindex], args.Entries[index:]...)
+			}
+		}
+		// rf.log = rf.log[:args.PrevLogIndex-baseindex+1]
+		// rf.log = append(rf.log, args.Entries...)
 
 		reply.TryIndex = args.PrevLogIndex + len(args.Entries) + 1
 		reply.Success = true
@@ -827,7 +836,9 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 		if flag == "append" || flag == "all" {
 			DPrintf("{Node:%d}add entrylog:%v with term:%d in state:%v", rf.me, rf.log[len(rf.log)-1], rf.currentTerm, rf.state.String())
 		}
+		rf.broadcastAppendEntries()
 		rf.persist()
+		return index, rf.currentTerm, isLeader
 	}
 	// Your code here (2B).
 
