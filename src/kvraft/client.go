@@ -82,7 +82,7 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 	// You will have to modify this function.
 	ck.request++
 	leader := ck.leaderid
-
+	DPrintf("Clerk putappend key:%v val:%v op:%v", key, value, op)
 	args := &PutAppendArgs{Key: key, Value: value, Op: op, Clientid: ck.clientid, Reqid: ck.request}
 	for ; ; leader = (leader + 1) % int32(len(ck.servers)) {
 		reply := &PutAppendReply{}

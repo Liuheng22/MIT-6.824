@@ -277,7 +277,31 @@ func (rf *Raft) readPersist(data []byte) {
 func (rf *Raft) CondInstallSnapshot(lastIncludedTerm int, lastIncludedIndex int, snapshot []byte) bool {
 
 	// Your code here (2D).
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	// 保存snap
+	lastindex, _ := rf.getlastlogindexandterm()
+	snapshotindex := rf.log[0].Index
+	// 发来的可能是老snap,扔掉
+	if lastIncludedIndex <= rf.commitIndex {
+		DPrintf("{Node %d} rej snap lastincludeindex:%d and rf.commitIndex:%d", rf.me, lastIncludedIndex, rf.commitIndex)
+		return false
+	}
 
+	log := make([]EntryLog, 0)
+	log = append(log, EntryLog{})
+	if lastindex > lastIncludedIndex && rf.log[lastIncludedIndex-snapshotindex].Term == lastIncludedTerm {
+		log = append(log, rf.log[lastIncludedIndex-snapshotindex+1:]...)
+	}
+
+	log[0].Index = lastIncludedIndex
+	log[0].Term = lastIncludedTerm
+	log[0].Command = nil
+	rf.lastApplied = max(rf.lastApplied, lastIncludedIndex)
+	rf.commitIndex = max(rf.commitIndex, lastIncludedIndex)
+	rf.log = log
+
+	rf.persister.SaveStateAndSnapshot(rf.raftstate(), snapshot)
 	return true
 }
 
@@ -715,8 +739,6 @@ func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *Ap
 func (rf *Raft) applysnap(args *InstallSnapshotArgs) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	// 后面状态改变了
-	defer rf.persister.SaveStateAndSnapshot(rf.raftstate(), args.Snapshot)
 	// 保存snap
 	snapshotindex := rf.log[0].Index
 	lastindex, _ := rf.getlastlogindexandterm()
@@ -726,16 +748,20 @@ func (rf *Raft) applysnap(args *InstallSnapshotArgs) {
 		return
 	}
 
-	log := make([]EntryLog, 1)
-	if lastindex >= args.LastIncludedIndex && rf.log[args.LastIncludedIndex-snapshotindex].Term == args.LastIncludedTerm {
+	log := make([]EntryLog, 0)
+	log = append(log, EntryLog{})
+	if lastindex > args.LastIncludedIndex && rf.log[args.LastIncludedIndex-snapshotindex].Term == args.LastIncludedTerm {
 		log = append(log, rf.log[args.LastIncludedIndex-snapshotindex+1:]...)
 	}
+
 	log[0].Index = args.LastIncludedIndex
 	log[0].Term = args.LastIncludedTerm
 	log[0].Command = nil
 	rf.lastApplied = max(rf.lastApplied, args.LastIncludedIndex)
 	rf.commitIndex = max(rf.commitIndex, args.LastIncludedIndex)
 	rf.log = log
+
+	rf.persister.SaveStateAndSnapshot(rf.raftstate(), args.Snapshot)
 	go func() {
 		DPrintf("{Node:%d} apply snap  from {node:%d} term:%d with index %d", rf.me, args.LeaderId, args.LastIncludedTerm, args.LastIncludedIndex)
 		rf.applyCh <- ApplyMsg{
@@ -745,7 +771,6 @@ func (rf *Raft) applysnap(args *InstallSnapshotArgs) {
 			SnapshotIndex: args.LastIncludedIndex,
 		}
 	}()
-	return
 }
 
 func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapshotReply) {
@@ -766,11 +791,22 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapsho
 	rf.electiontimer.Reset(Election())
 	// 丢弃较小索引的快照
 	reply.Term = rf.currentTerm
-	snapshotindex := rf.log[0].Index
-	if snapshotindex >= args.LastIncludedIndex {
+	// snap比较旧，扔掉
+	if rf.commitIndex >= args.LastIncludedIndex {
 		return
 	}
-	go rf.applysnap(args)
+	//go rf.applysnap(args)
+	// 因为还要通知server应用snap，所以无论如何都要发送给server
+	// 又因为应用之前可能会有msg发送给server，让状态机往前走，所以到时候还是要判断是否可以加载状态机，因此这里不需要应用，让上层实现这个
+	go func() {
+		DPrintf("{Node:%d} apply snap  from {node:%d} term:%d with index %d", rf.me, args.LeaderId, args.LastIncludedTerm, args.LastIncludedIndex)
+		rf.applyCh <- ApplyMsg{
+			SnapshotValid: true,
+			Snapshot:      args.Snapshot,
+			SnapshotTerm:  args.LastIncludedTerm,
+			SnapshotIndex: args.LastIncludedIndex,
+		}
+	}()
 }
 
 func (rf *Raft) sendInstallSnapshot(server int, args *InstallSnapshotArgs, reply *InstallSnapshotReply) bool {

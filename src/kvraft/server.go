@@ -21,6 +21,21 @@ func DPrintf(format string, a ...interface{}) (n int, err error) {
 	return
 }
 
+func max(a, b int) int {
+	if a > b {
+		return a
+	} else {
+		return b
+	}
+}
+func min(a, b int) int {
+	if a > b {
+		return b
+	} else {
+		return a
+	}
+}
+
 type Op struct {
 	// Your definitions here.
 	// Field names must start with capital letters,
@@ -55,6 +70,12 @@ type KVServer struct {
 
 	persister *raft.Persister
 	lastindex int //
+}
+
+func (kv *KVServer) DprintDB() {
+	for key, value := range kv.db {
+		DPrintf("[server:%d DBinfo:]key :%v ,val :%v", kv.me, key, value)
+	}
 }
 
 func (kv *KVServer) getreschan(index int) chan Response {
@@ -157,6 +178,7 @@ func (kv *KVServer) applydb(command *Op, resp *Response) {
 	case "Append":
 		kv.db[command.Key] += command.Value
 	}
+	kv.DprintDB()
 }
 
 func (kv *KVServer) snap() []byte {
@@ -164,7 +186,7 @@ func (kv *KVServer) snap() []byte {
 	e := labgob.NewEncoder(w)
 	e.Encode(kv.db)
 	e.Encode(kv.applied)
-	e.Encode(kv.lastindex)
+	//e.Encode(kv.lastindex)
 	data := w.Bytes()
 	return data
 }
@@ -175,15 +197,17 @@ func (kv *KVServer) ingestSnap(snapshot []byte) {
 	}
 	var db map[string]string
 	var applied map[int64]int64
-	var lastIndex int
+	// var lastIndex int
 	r := bytes.NewBuffer(snapshot)
 	d := labgob.NewDecoder(r)
 	d.Decode(&db)
 	d.Decode(&applied)
-	d.Decode(&lastIndex)
+	//d.Decode(&lastIndex)
 	kv.db = db
 	kv.applied = applied
-	kv.lastindex = lastIndex
+	// 可能有更加新的已经应用了，可以不用
+	// kv.lastindex = max(kv.lastindex, lastIndex)
+	kv.DprintDB()
 }
 
 func (kv *KVServer) applier() {
@@ -197,6 +221,8 @@ func (kv *KVServer) applier() {
 				kv.mu.Unlock()
 				continue
 			}
+			//更新
+			kv.lastindex = msg.CommandIndex
 
 			index := msg.CommandIndex
 			command := msg.Command.(Op)
@@ -213,21 +239,25 @@ func (kv *KVServer) applier() {
 					kv.applied[command.ClientId] = command.RequestId
 				}
 			}
-			// 修改应用的command index
-			if msg.CommandIndex == kv.lastindex+1 {
-				kv.lastindex++
+			if _, isleader := kv.rf.GetState(); isleader {
+				reschan := kv.getreschan(index)
+				reschan <- resp
 			}
+			DPrintf("server:%d apply lastindex:%d and msg.index:%d command:%v", kv.me, kv.lastindex, msg.CommandIndex, command)
 			if kv.maxraftstate != -1 && kv.persister.RaftStateSize() >= kv.maxraftstate {
 				snapshot := kv.snap()
 				kv.rf.Snapshot(kv.lastindex, snapshot)
 			}
-			reschan := kv.getreschan(index)
-			reschan <- resp
 			kv.mu.Unlock()
 		} else if msg.SnapshotValid {
 			// 收到了snapshot,那么
 			kv.mu.Lock()
-			kv.ingestSnap(msg.Snapshot)
+			if kv.rf.CondInstallSnapshot(msg.SnapshotTerm, msg.SnapshotIndex, msg.Snapshot) {
+				//持久化snap
+				//读取snap，应用到db
+				kv.ingestSnap(msg.Snapshot)
+				kv.lastindex = max(kv.lastindex, msg.SnapshotIndex)
+			}
 			kv.mu.Unlock()
 		}
 	}
@@ -291,6 +321,7 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.db = make(map[string]string)
 	kv.notify = make(map[int]chan Response)
 	kv.applied = make(map[int64]int64)
+	kv.lastindex = 0
 	kv.readsnap()
 	go kv.applier()
 	return kv
